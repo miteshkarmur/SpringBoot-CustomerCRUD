@@ -14,14 +14,23 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepo customerRepo;
 
 	@Override
-	public List<Customer> listCustomers() {
+	public List<Customer> getAllCustomers() {
 		return customerRepo.findAll();
 	}
 
 	@Override
-	public Integer addCustomer(Customer customer) {
-		Customer c=customerRepo.save(customer);
-		return c.getId();
+	public Customer getCustomerById(Integer id) {
+		return customerRepo.findById(id).get();
+	}
+
+	@Override
+	public void saveOrUpdateCustomer(Customer customer) {
+		customerRepo.save(customer);
+	}
+
+	@Override
+	public void deleteCustomer(Customer customer) {
+		customerRepo.delete(customer);
 	}
 
 }
